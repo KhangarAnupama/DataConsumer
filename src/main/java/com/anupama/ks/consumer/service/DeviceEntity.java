@@ -1,4 +1,4 @@
-package com.anupama.ks.producer.service;
+package com.anupama.ks.consumer.service;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

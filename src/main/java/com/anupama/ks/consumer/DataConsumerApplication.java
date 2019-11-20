@@ -1,19 +1,19 @@
-package com.anupama.ks.producer;
+package com.anupama.ks.consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.anupama.ks.producer.service.ProducerRepository;
+import com.anupama.ks.consumer.service.ConsumerRepository;
 
 @SpringBootApplication
-public class DataProducerApplication {
+public class DataConsumerApplication {
 	
 	@Autowired
-	ProducerRepository repository;
+	ConsumerRepository repository;
 
 	public static void main(String[] args) {
-		SpringApplication.run(DataProducerApplication.class, args);
+		SpringApplication.run(DataConsumerApplication.class, args);
 	}
 
 }

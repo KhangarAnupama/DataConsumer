@@ -1,4 +1,4 @@
-package com.anupama.ks.producer.service;
+package com.anupama.ks.consumer.service;
 import redis.clients.jedis.Jedis; 
 
 public class RedisJava { 

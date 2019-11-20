@@ -1,7 +1,7 @@
-package com.anupama.ks.producer.service;
+package com.anupama.ks.consumer.service;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface ProducerRepository extends CrudRepository<DeviceEntity, String> {
+public interface ConsumerRepository extends CrudRepository<DeviceEntity, String> {
 
 }

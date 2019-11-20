@@ -1,4 +1,4 @@
-package com.anupama.ks.producer.service;
+package com.anupama.ks.consumer.service;
 
 public class DeviceTO {
 	

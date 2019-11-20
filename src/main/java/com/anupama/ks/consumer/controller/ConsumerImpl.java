@@ -1,4 +1,4 @@
-package com.anupama.ks.producer.controller;
+package com.anupama.ks.consumer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.anupama.ks.producer.service.DeviceEntity;
-import com.anupama.ks.producer.service.FileHandler;
-import com.anupama.ks.producer.service.ProducerRepository;
+import com.anupama.ks.consumer.service.DeviceEntity;
+import com.anupama.ks.consumer.service.FileHandler;
+import com.anupama.ks.consumer.service.ConsumerRepository;
 @RestController
-public class ProducerImpl {
+public class ConsumerImpl {
 	
 	@Autowired
 	FileHandler handler;
 	
 	@Autowired
-	ProducerRepository repsitory;
+	ConsumerRepository repsitory;
 	
-	@RequestMapping(value = "/data/producer", method = RequestMethod.POST,
+	@RequestMapping(value = "/data/consumer/file", method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public DeviceEntity produceData(@RequestParam(value = "mac", required = true) String macAddress) {
+	public DeviceEntity consumerData(@RequestParam(value = "mac", required = true) String macAddress) {
 		
 		DeviceEntity deviceData = null;
 		if(handler.isAuthentic(macAddress)) {

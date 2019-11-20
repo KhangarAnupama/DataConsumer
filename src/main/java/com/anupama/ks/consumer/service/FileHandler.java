@@ -1,4 +1,4 @@
-package com.anupama.ks.producer.service;
+package com.anupama.ks.consumer.service;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpServerErrorException.InternalServerError;
 
 import redis.clients.jedis.Jedis;
 
@@ -41,9 +42,13 @@ public class FileHandler {
 	}
 	
 	public void saveDataInRedisCache(DeviceEntity deviceTO) {
+		try {
 	      Jedis jedis = new Jedis("localhost"); 
-	      System.out.println("Connection to redis server sucessfully"); 
 	      jedis.set(deviceTO.getMacAddress(), deviceTO.getData()); 
+		}catch (InternalServerError e) {
+			e.printStackTrace();
+			 System.out.println("Failed to connect redis server sucessfully"); 
+		}
 	}
 	
 	public boolean isAuthentic(String macAddress) {
