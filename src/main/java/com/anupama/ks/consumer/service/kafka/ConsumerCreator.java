@@ -1,4 +1,4 @@
-package com.anupama.ks.consumer.service;
+package com.anupama.ks.consumer.service.kafka;
 
 import java.util.Collections;
 import java.util.Properties;

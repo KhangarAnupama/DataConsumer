@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.anupama.ks.consumer.service.DeviceEntity;
-import com.anupama.ks.consumer.service.FileHandler;
-import com.anupama.ks.consumer.service.IKafkaConstants;
-import com.anupama.ks.consumer.service.ConsumerCreator;
-import com.anupama.ks.consumer.service.ConsumerRepository;
+import com.anupama.ks.consumer.service.influxdb.InfluxDAO;
+import com.anupama.ks.consumer.service.kafka.ConsumerCreator;
+import com.anupama.ks.consumer.service.legacy.ConsumerRepository;
+import com.anupama.ks.consumer.service.legacy.DeviceEntity;
+import com.anupama.ks.consumer.service.legacy.FileHandler;
+
+// Pre-requisite : Up kafka, redis and influx service
 @RestController
 public class ConsumerImpl {
 	
@@ -22,6 +24,9 @@ public class ConsumerImpl {
 	
 	@Autowired
 	ConsumerRepository repsitory;
+	
+	@Autowired
+	InfluxDAO dao;
 	
 	@RequestMapping(value = "/data/consumer/file", method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
@@ -52,9 +57,19 @@ public class ConsumerImpl {
 			
 		});
 		consumer.commitAsync();
-		
+		// TO-DO : Need to store proper response
 		return consumerRecords.records("demo").toString();
 		
+	}
+	
+	@RequestMapping(value = "/data/consumer/influx", method = RequestMethod.POST,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public String consumerDataInfluxdb() {	
+		
+		String kafkaData = consumerDataKafka();
+		dao.save(kafkaData);
+		
+		return "Data Stored sucessfully";
 		
 	}
 	

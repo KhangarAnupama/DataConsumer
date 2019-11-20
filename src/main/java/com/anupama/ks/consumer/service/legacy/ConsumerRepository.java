@@ -1,4 +1,4 @@
-package com.anupama.ks.consumer.service;
+package com.anupama.ks.consumer.service.legacy;
 
 import org.springframework.data.repository.CrudRepository;
 

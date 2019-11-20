@@ -1,4 +1,4 @@
-package com.anupama.ks.consumer.service;
+package com.anupama.ks.consumer.service.kafka;
 
 public interface IKafkaConstants {
 	public static String KAFKA_BROKERS = "localhost:9092";
